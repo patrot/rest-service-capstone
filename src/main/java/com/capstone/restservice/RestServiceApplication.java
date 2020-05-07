@@ -3,7 +3,7 @@ package com.capstone.restservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// Trigger build omne
+// Trigger build two
 @SpringBootApplication
 public class RestServiceApplication {
 
