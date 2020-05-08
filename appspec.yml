@@ -4,18 +4,15 @@ files:
   - source: rest-service-0.0.1-SNAPSHOT.jar
     destination: /var/rest-service-app
 hooks:
-  ApplicationStop:
-    - location: stop_server.sh
-      timeout: 300
-      runas: root
   AfterInstall:
-    - location: install_dependencies.sh
-      timeout: 300
-      runas: root
-    - location: create_or_update_service.sh
-      timeout: 300
-      runas: root
+  - location: fix_previleges.sh
+    timeout: 300
+    runas: root
   ApplicationStart:
-    - location: start_server.sh
-      timeout: 300
-      runas: root
+  - location: start_server.sh
+    timeout: 300
+    runas: root
+  ApplicationStop:
+  - location: stop_server.sh
+    timeout: 300
+    runas: root
