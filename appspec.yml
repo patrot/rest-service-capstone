@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: rest-service-0.0.1-SNAPSHOT.jar
-    destination: /var/rest-service-app
+  - source: /
+    destination: /home/ec2-user
 hooks:
   AfterInstall:
   - location: fix_previleges.sh
