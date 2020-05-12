@@ -2,17 +2,17 @@ package com.capstone.restservice.respository;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
+@Table(name = "department")
 public class DepartmentDto {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "name")
     private String name;
 
     public DepartmentDto() {}
