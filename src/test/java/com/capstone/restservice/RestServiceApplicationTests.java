@@ -1,10 +1,13 @@
-//package com.capstone.restservice;
-//
-////@SpringBootTest
-//class RestServiceApplicationTests {
-//
-//	//@Test
-//	void contextLoads() {
-//	}
-//
-//}
+package com.capstone.restservice;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class RestServiceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
