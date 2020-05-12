@@ -14,8 +14,17 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(DepartmentRepository repository) {
         return args -> {
-            log.info("Preloading " + repository.save(new DepartmentDto("Shirts")));
-            log.info("Preloading " + repository.save(new DepartmentDto("Trousers")));
+            log.info("Preloading Existing items count " + repository.count());
+            if (repository.count() < 1) {
+                log.info("Preloading " + repository.save(new DepartmentDto("Shirts")));
+                log.info("Preloading " + repository.save(new DepartmentDto("Trousers")));
+                log.info("Preloading " + repository.save(new DepartmentDto("Jackets")));
+                log.info("Preloading " + repository.save(new DepartmentDto("Jeans")));
+                log.info("Preloading " + repository.save(new DepartmentDto("Caps")));
+                log.info("Preloading " + repository.save(new DepartmentDto("Pajamas")));
+                log.info("Preloading " + repository.save(new DepartmentDto("Skirts")));
+                log.info("Preloading " + repository.save(new DepartmentDto("Sweaters")));
+            }
         };
     }
 }
