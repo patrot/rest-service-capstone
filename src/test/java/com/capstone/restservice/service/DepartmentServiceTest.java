@@ -9,7 +9,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+
 public class DepartmentServiceTest {
+
 
     @Test
     public void GetAllDepartmentsTest() {
@@ -19,7 +22,8 @@ public class DepartmentServiceTest {
         expectedDepartments.add(new Department(100, "Shirt"));
         expectedDepartments.add(new Department(200, "Trousers"));
 
-        DepartmentService departmentService = new DepartmentServiceImpl();
+        DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
+        departmentService.setRepository(new MockDepartmentRepository());
 
         // Act
         List<Department> actualDepartments = departmentService.GetAll();

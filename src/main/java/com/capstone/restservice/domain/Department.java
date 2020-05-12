@@ -1,8 +1,16 @@
 package com.capstone.restservice.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Department {
-    private int id;
+    private @Id int id;
     private String name;
+
+    public Department() {
+        super();
+    }
 
     public Department(int id, String name) {
         this.id = id;
