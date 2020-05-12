@@ -1,6 +1,6 @@
 package com.capstone.restservice.service;
 
-import com.capstone.restservice.domain.Department;
+import com.capstone.restservice.respository.DepartmentDto;
 import com.capstone.restservice.respository.DepartmentRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -13,31 +13,31 @@ import java.util.Optional;
 
 public class MockDepartmentRepository implements DepartmentRepository {
 
-    private  final List<Department> departments = new ArrayList<>();
+    private  final List<DepartmentDto> departmentDtos = new ArrayList<>();
 
     public  MockDepartmentRepository() {
-        departments.add(new Department(100, "Shirt"));
-        departments.add(new Department(200, "Trousers"));
+        departmentDtos.add(new DepartmentDto("Shirt"));
+        departmentDtos.add(new DepartmentDto("Trousers"));
 
     }
 
     @Override
-    public List<Department> findAll() {
-        return departments;
+    public List<DepartmentDto> findAll() {
+        return departmentDtos;
     }
 
     @Override
-    public List<Department> findAll(Sort sort) {
+    public List<DepartmentDto> findAll(Sort sort) {
         return null;
     }
 
     @Override
-    public Page<Department> findAll(Pageable pageable) {
+    public Page<DepartmentDto> findAll(Pageable pageable) {
         return null;
     }
 
     @Override
-    public List<Department> findAllById(Iterable<Integer> integers) {
+    public List<DepartmentDto> findAllById(Iterable<Long> longs) {
         return null;
     }
 
@@ -47,17 +47,17 @@ public class MockDepartmentRepository implements DepartmentRepository {
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public void deleteById(Long aLong) {
 
     }
 
     @Override
-    public void delete(Department entity) {
+    public void delete(DepartmentDto entity) {
 
     }
 
     @Override
-    public void deleteAll(Iterable<? extends Department> entities) {
+    public void deleteAll(Iterable<? extends DepartmentDto> entities) {
 
     }
 
@@ -67,22 +67,22 @@ public class MockDepartmentRepository implements DepartmentRepository {
     }
 
     @Override
-    public <S extends Department> S save(S entity) {
+    public <S extends DepartmentDto> S save(S entity) {
         return null;
     }
 
     @Override
-    public <S extends Department> List<S> saveAll(Iterable<S> entities) {
+    public <S extends DepartmentDto> List<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public Optional<Department> findById(Integer integer) {
+    public Optional<DepartmentDto> findById(Long aLong) {
         return Optional.empty();
     }
 
     @Override
-    public boolean existsById(Integer integer) {
+    public boolean existsById(Long aLong) {
         return false;
     }
 
@@ -92,12 +92,12 @@ public class MockDepartmentRepository implements DepartmentRepository {
     }
 
     @Override
-    public <S extends Department> S saveAndFlush(S entity) {
+    public <S extends DepartmentDto> S saveAndFlush(S entity) {
         return null;
     }
 
     @Override
-    public void deleteInBatch(Iterable<Department> entities) {
+    public void deleteInBatch(Iterable<DepartmentDto> entities) {
 
     }
 
@@ -107,37 +107,37 @@ public class MockDepartmentRepository implements DepartmentRepository {
     }
 
     @Override
-    public Department getOne(Integer integer) {
+    public DepartmentDto getOne(Long aLong) {
         return null;
     }
 
     @Override
-    public <S extends Department> Optional<S> findOne(Example<S> example) {
+    public <S extends DepartmentDto> Optional<S> findOne(Example<S> example) {
         return Optional.empty();
     }
 
     @Override
-    public <S extends Department> List<S> findAll(Example<S> example) {
+    public <S extends DepartmentDto> List<S> findAll(Example<S> example) {
         return null;
     }
 
     @Override
-    public <S extends Department> List<S> findAll(Example<S> example, Sort sort) {
+    public <S extends DepartmentDto> List<S> findAll(Example<S> example, Sort sort) {
         return null;
     }
 
     @Override
-    public <S extends Department> Page<S> findAll(Example<S> example, Pageable pageable) {
+    public <S extends DepartmentDto> Page<S> findAll(Example<S> example, Pageable pageable) {
         return null;
     }
 
     @Override
-    public <S extends Department> long count(Example<S> example) {
+    public <S extends DepartmentDto> long count(Example<S> example) {
         return 0;
     }
 
     @Override
-    public <S extends Department> boolean exists(Example<S> example) {
+    public <S extends DepartmentDto> boolean exists(Example<S> example) {
         return false;
     }
 }

@@ -36,8 +36,8 @@ public class DepartmentControllerTests {
         //Arrange
 
         List<Department> departments = new ArrayList<>();
-        departments.add(new Department(100, "Shirt"));
-        departments.add(new Department(200, "Trousers"));
+        departments.add(new Department(100L,"Shirt"));
+        departments.add(new Department(200L, "Trousers"));
 
         when(departmentService.GetAll()).thenReturn(departments);
 
@@ -56,8 +56,8 @@ public class DepartmentControllerTests {
         //Arrange
 
         List<Department> expectedDepartments = new ArrayList<>();
-        expectedDepartments.add(new Department(100, "Shirt"));
-        expectedDepartments.add(new Department(200, "Trousers"));
+        expectedDepartments.add(new Department(100L,"Shirt"));
+        expectedDepartments.add(new Department(200L,"Trousers"));
 
         when(departmentService.GetAll()).thenReturn(expectedDepartments);
 
