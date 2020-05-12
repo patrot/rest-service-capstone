@@ -1,6 +1,7 @@
 package com.capstone.restservice.service;
 
 import com.capstone.restservice.domain.Department;
+import com.capstone.restservice.respository.DepartmentDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,11 +20,14 @@ public class DepartmentServiceTest {
 
         // Arrange
         List<Department> expectedDepartments = new ArrayList<>();
-        expectedDepartments.add(new Department(100, "Shirt"));
-        expectedDepartments.add(new Department(200, "Trousers"));
 
+        MockDepartmentRepository mockDepartmentRepository = new MockDepartmentRepository();
         DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
-        departmentService.setRepository(new MockDepartmentRepository());
+        departmentService.setRepository(mockDepartmentRepository);
+
+        for (DepartmentDto departmentDto:mockDepartmentRepository.findAll()) {
+            expectedDepartments.add(new Department(departmentDto.getId(), departmentDto.getName()));
+        }
 
         // Act
         List<Department> actualDepartments = departmentService.GetAll();
