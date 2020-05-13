@@ -16,6 +16,7 @@ public class DepartmentController {
 
     @GetMapping("/departments")
     public List<Department> allDepartments() {
+
         return departmentService.GetAll();
     }
 }
