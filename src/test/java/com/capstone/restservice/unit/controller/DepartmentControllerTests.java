@@ -1,5 +1,6 @@
-package com.capstone.restservice.controller;
+package com.capstone.restservice.unit.controller;
 
+import com.capstone.restservice.controller.DepartmentController;
 import com.capstone.restservice.domain.Department;
 import com.capstone.restservice.service.DepartmentService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -17,7 +18,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
@@ -35,18 +36,12 @@ public class DepartmentControllerTests {
 
         //Arrange
 
-        List<Department> departments = new ArrayList<>();
-        departments.add(new Department(100L,"Shirt"));
-        departments.add(new Department(200L, "Trousers"));
-
-        when(departmentService.GetAll()).thenReturn(departments);
-
-
         // Act
         MvcResult result = this.mockMvc.perform(get("/departments")).
                 andDo(print()).andReturn();
 
         // Assert
+
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
     }
 
@@ -67,6 +62,8 @@ public class DepartmentControllerTests {
                 andDo(print()).andReturn();
 
         // Assert
+
+        verify(departmentService, times(1)).GetAll();
 
         String response = result.getResponse().getContentAsString();
         ObjectMapper objectMapper = new ObjectMapper();

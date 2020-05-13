@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "department")
-public class DepartmentDto {
+@Table(name = "product")
+public class ProductDto {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -15,12 +15,14 @@ public class DepartmentDto {
     @Column(name = "name")
     private String name;
 
-    //@OneToMany(mappedBy = "product")
-    //private List<ProductDto> productDtos;
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    private DepartmentDto department;
 
-    public DepartmentDto() {}
+    public ProductDto() {}
 
-    public DepartmentDto(String name) {
+    public ProductDto(String name, DepartmentDto department) {
         this.name = name;
+        this.department = department;
     }
 }

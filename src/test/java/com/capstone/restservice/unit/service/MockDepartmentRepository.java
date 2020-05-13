@@ -1,4 +1,4 @@
-package com.capstone.restservice.service;
+package com.capstone.restservice.unit.service;
 
 import com.capstone.restservice.respository.DepartmentDto;
 import com.capstone.restservice.respository.DepartmentRepository;
@@ -7,22 +7,27 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class MockDepartmentRepository implements DepartmentRepository {
 
-    private  final List<DepartmentDto> departmentDtos = new ArrayList<>();
+    private  final List<DepartmentDto> departmentDtos;
 
-    public  MockDepartmentRepository() {
-        departmentDtos.add(new DepartmentDto("Shirt"));
-        departmentDtos.add(new DepartmentDto("Trousers"));
+    private int findAllInvocationCount;
 
+    public  MockDepartmentRepository(List<DepartmentDto> departmentDtos) {
+        this.departmentDtos = departmentDtos;
+        findAllInvocationCount = 0;
+    }
+
+    public int getFindAllInvocationCount() {
+        return findAllInvocationCount;
     }
 
     @Override
     public List<DepartmentDto> findAll() {
+        findAllInvocationCount++;
         return departmentDtos;
     }
 
