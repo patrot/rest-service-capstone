@@ -71,7 +71,6 @@ public class DepartmentControllerTests {
         String response = result.getResponse().getContentAsString();
         ObjectMapper objectMapper = new ObjectMapper();
         List<Department> actualDepartments = objectMapper.readValue(response, new TypeReference<>() {});
-        System.out.println(actualDepartments);
         assertTrue(Arrays.deepEquals(expectedDepartments.toArray(), actualDepartments.toArray()));
     }
 
