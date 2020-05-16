@@ -27,8 +27,4 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         return departments;
     }
-
-    public void setRepository(DepartmentRepository repository) {
-        this.repository = repository;
-    }
 }
