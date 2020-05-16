@@ -27,8 +27,4 @@ public class ProductServiceImpl implements ProductService {
 
         return products;
     }
-
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 }
