@@ -54,7 +54,7 @@ public class ProductControllerTests {
         expectedProducts.add(new Product(1L, "Long Sleeves", 7L));
         expectedProducts.add(new Product(2L, "Short Sleeves", 7L));
 
-        when(productService.GetAll()).thenReturn(expectedProducts);
+        when(productService.getAll()).thenReturn(expectedProducts);
 
         // Act
         MvcResult result = this.mockMvc.perform(get("/products"))
@@ -63,7 +63,35 @@ public class ProductControllerTests {
 
         // Assert
 
-        verify(productService, times(1)).GetAll();
+        verify(productService, times(1)).getAll();
+
+        String response = result.getResponse().getContentAsString();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Product> actualProducts = objectMapper.readValue(response, new TypeReference<>() {});
+        System.out.println(actualProducts);
+        assertTrue(Arrays.deepEquals(expectedProducts.toArray(), actualProducts.toArray()));
+
+    }
+
+    @Test
+    public void getByDepartmentIdReturnsProductsByDepartment() throws Exception{
+
+        // Arrange
+
+        List<Product> expectedProducts = new ArrayList<>();
+        expectedProducts.add(new Product(3L, "Flares", 8L));
+        expectedProducts.add(new Product(4L, "Straight", 8L));
+
+        when(productService.getAllByDepartmentId(8L)).thenReturn(expectedProducts);
+
+        // Act
+        MvcResult result = this.mockMvc.perform(get("/products?departmentId=8"))
+                .andDo(print()).andReturn();
+
+
+        // Assert
+
+        verify(productService, times(1)).getAllByDepartmentId(8L);
 
         String response = result.getResponse().getContentAsString();
         ObjectMapper objectMapper = new ObjectMapper();

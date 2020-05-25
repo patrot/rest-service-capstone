@@ -54,7 +54,7 @@ public class DepartmentControllerTests {
         expectedDepartments.add(new Department(100L,"Shirt"));
         expectedDepartments.add(new Department(200L,"Trousers"));
 
-        when(departmentService.GetAll()).thenReturn(expectedDepartments);
+        when(departmentService.getAll()).thenReturn(expectedDepartments);
 
 
         // Act
@@ -63,7 +63,7 @@ public class DepartmentControllerTests {
 
         // Assert
 
-        verify(departmentService, times(1)).GetAll();
+        verify(departmentService, times(1)).getAll();
 
         String response = result.getResponse().getContentAsString();
         ObjectMapper objectMapper = new ObjectMapper();

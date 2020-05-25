@@ -5,5 +5,6 @@ import com.capstone.restservice.domain.Product;
 import java.util.List;
 
 public interface ProductService {
-    List<Product> GetAll();
+    List<Product> getAll();
+    List<Product> getAllByDepartmentId(Long id);
 }

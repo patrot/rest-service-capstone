@@ -20,6 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 public class DepartmentServiceTest {
@@ -63,9 +65,11 @@ public class DepartmentServiceTest {
 
         // Act
 
-        List<Department> actualDepartments = departmentService.GetAll();
+        List<Department> actualDepartments = departmentService.getAll();
 
         // Assert
+
+        verify(departmentRepository, times(1)).findAll();
 
         assertTrue(Arrays.deepEquals(expectedDepartments.toArray(), actualDepartments.toArray()));
     }
