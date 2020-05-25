@@ -16,7 +16,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentRepository repository;
 
     @Override
-    public List<Department> GetAll() {
+    public List<Department> getAll() {
         List<DepartmentDto> departmentDtos = repository.findAll();
 
         List<Department> departments = new ArrayList<>();

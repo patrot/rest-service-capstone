@@ -16,12 +16,26 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> GetAll() {
+    public List<Product> getAll() {
         List<ProductDto> productDtos = productRepository.findAll();
 
         List<Product> products = new ArrayList<>();
 
         for (ProductDto productDto:productDtos) {
+            products.add(new Product(productDto.getId(), productDto.getName(), productDto.getDepartment().getId()));
+        }
+
+        return products;
+    }
+
+    @Override
+    public List<Product> getAllByDepartmentId(Long id) {
+        List<ProductDto> productDtos = productRepository.findAll();
+
+        List<Product> products = new ArrayList<>();
+
+        for (ProductDto productDto:productDtos) {
+            if (productDto.getDepartment().getId() != id) continue;
             products.add(new Product(productDto.getId(), productDto.getName(), productDto.getDepartment().getId()));
         }
 

@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 public class ProductServiceTests {
@@ -42,15 +44,21 @@ public class ProductServiceTests {
 
     @Before
     public void setUp() {
-        DepartmentDto departmentDto = new DepartmentDto("Shirts");
-        departmentDto.setId(1L);
+        DepartmentDto shirtsDto = new DepartmentDto("Shirts");
+        shirtsDto.setId(1L);
+        DepartmentDto trousersDto = new DepartmentDto("Trousers");
+        trousersDto.setId(2L);
 
         List<ProductDto> productDtos = new ArrayList<>();
-        productDtos.add(new ProductDto( "Long Sleeves", departmentDto));
-        productDtos.add(new ProductDto("Short Sleeves", departmentDto));
+        productDtos.add(new ProductDto( "Long Sleeves", shirtsDto));
+        productDtos.add(new ProductDto("Short Sleeves", shirtsDto));
+        productDtos.add(new ProductDto( "Flares", trousersDto));
+        productDtos.add(new ProductDto("Straight", trousersDto));
 
         productDtos.get(0).setId(100L);
         productDtos.get(1).setId(200L);
+        productDtos.get(2).setId(300L);
+        productDtos.get(3).setId(400L);
 
         Mockito.when(productRepository.findAll())
                 .thenReturn(productDtos);
@@ -64,12 +72,39 @@ public class ProductServiceTests {
         List<Product> expectedProducts = new ArrayList<>();
         expectedProducts.add(new Product(100L, "Long Sleeves", 1L));
         expectedProducts.add(new Product(200L, "Short Sleeves", 1L));
+        expectedProducts.add(new Product(300L, "Flares", 2L));
+        expectedProducts.add(new Product(400L, "Straight", 2L));
 
         // Act
 
-        List<Product> actualProducts = productService.GetAll();
+        List<Product> actualProducts = productService.getAll();
 
         // Assert
+
+        verify(productRepository, times(1)).findAll();
+
+        System.out.println(actualProducts);
+
+        assertTrue(Arrays.deepEquals(expectedProducts.toArray(), actualProducts.toArray()));
+    }
+
+    @Test
+    public void getAllByDepartmentIdTest() {
+
+
+        // Arrange
+
+        List<Product> expectedProducts = new ArrayList<>();
+        expectedProducts.add(new Product(300L, "Flares", 2L));
+        expectedProducts.add(new Product(400L, "Straight", 2L));
+
+        // Act
+
+        List<Product> actualProducts = productService.getAllByDepartmentId(2L);
+
+        // Assert
+
+        verify(productRepository, times(1)).findAll();
 
         assertTrue(Arrays.deepEquals(expectedProducts.toArray(), actualProducts.toArray()));
     }
